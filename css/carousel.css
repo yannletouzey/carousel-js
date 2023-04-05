@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100vh;
+}
+.container-slider {
+  position: relative;
+  max-width: 70%;
+  height: 100%;
+  perspective: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.cube {
+  --width-cube: 15rem;
+  width: calc(var(--width-cube) + 2px);
+  height: calc(var(--width-cube) + 2px);
+  transform-style: preserve-3d;
+}
+.cube-prev {
+  animation: spinPrev 3s ease-in-out forwards;
+}
+.cube-next {
+  animation: spinNext 3s ease-in-out forwards;
+}
+.face {
+  position: absolute;
+  border: 1px solid #3e382c;
+  width: var(--width-cube);
+  height: var(--width-cube);
+  text-align: center;
+  line-height: var(--width-cube);
+  background: rgb(218, 177, 254);
+  transform-style: preserve-3d;
+}
+.face div {
+  transform: translateZ(0.001px);
+}
+
+/* BUTTON */
+.btn {
+  --size-btn: 52px;
+  width: var(--size-btn);
+  height: var(--size-btn);
+  position: relative;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+/* BUTTON PREV */
+.prev {
+  transform: rotateZ(180deg);
+}
+/* SQUARE PREV */
+#square-prev path {
+  stroke-dasharray: 200;
+}
+.btn:hover #square-prev path {
+  stroke-dashoffset: 200;
+}
+/* ARROW PREV */
+#arrow-prev path {
+  stroke-dasharray: 109.73954010009766;
+  stroke-dashoffset: 109.73954010009766;
+}
+/* BUTTON NEXT */
+#square-next path {
+  stroke-dasharray: 200;
+}
+/* SQUARE NEXT */
+.btn:hover #square-next path {
+  stroke-dashoffset: 200;
+}
+/* ARROW NEXT */
+#arrow-next path {
+  stroke-dasharray: 109.73954010009766;
+  stroke-dashoffset: 109.73954010009766;
+}
+/* common attributes */
+#square-prev,
+#square-next {
+  position: absolute;
+  transform: translate(-50%, -50%) rotateZ(180deg);
+}
+#arrow-prev,
+#arrow-next {
+  position: absolute;
+  --pos-x: calc((-50%) - 5px);
+}
+#arrow-prev,
+#arrow-next {
+  transform: translate(var(--pos-x), -50%);
+  transform: translate(var(--pos-x), -50%);
+}
+.btn:hover #square-next path,
+.btn:hover #arrow-next path,
+.btn:hover #square-prev path,
+.btn:hover #arrow-prev path {
+  transition-duration: 0.5s;
+}
+.btn:hover #arrow-prev path,
+.btn:hover #arrow-next path {
+  stroke-dashoffset: 0;
+  --pos-x: calc((+10%));
+  transform: translateX(var(--pos-x));
+}
